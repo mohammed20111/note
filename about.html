@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حول</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f0f0f0;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .dark-mode {
+      background-color: #222;
+      color: #fff;
+    }
+
+    .card-container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .card {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode .card {
+      background-color: #333;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+    <div class="card">
+      <h1>حول الموقع</h1>
+      <p>مرحباً بك في موقع الملاحظات والمهام! هذا الموقع يتيح لك إضافة ملاحظات وتنظيم المهام الشخصية بكل سهولة.</p>
+      <ul>
+        <li>إضافة وتحرير الملاحظات.</li>
+        <li>تخصيص الألوان والأنماط.</li>
+        <li>التبديل بين الوضع الداكن والفاتح.</li>
+        <li>حفظ الملاحظات في التخزين المحلي.</li>
+        <li>إشعارات تذكير للملاحظات.</li>
+      </ul>
+    </div>
+
+    <button id="back-to-home" onclick="window.location.href='index.html'">🔙 العودة إلى الصفحة الرئيسية</button>
+  </div>
+
+  <script>
+    // تفعيل الوضع الداكن إن وُجد في localStorage
+    window.onload = function () {
+      const theme = localStorage.getItem("theme");
+      if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+    };
+  </script>
+
+</body>
+</html>

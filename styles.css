@@ -1,0 +1,189 @@
+/* تعيين خلفية خلابة باستخدام تدرج لوني */
+body {
+  background: linear-gradient(to bottom right, #a1c4fd, #c2e9fb); /* خلفية جذابة */
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 40px;
+  direction: rtl;  /* الكتابة من اليمين لليسار */
+  text-align: center;  /* محاذاة النص للوسط */
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* تخصيص وضع الداكن */
+body.dark-mode {
+  background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364); /* خلفية داكنة جذابة */
+  color: #f0f0f0;
+}
+
+body.dark-mode .note {
+  background-color: #333;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+/* تخصيص مظهر الملاحظات */
+.note {
+  background-color: var(--note-color, #4CAF50);
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px auto;
+  font-size: 16px;
+  width: 90%;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.note:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* تخصيص زر الملاحظة */
+.note button {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.note button:hover {
+  color: #f44336;
+  transform: scale(1.1);
+}
+
+/* تخصيص الأزرار */
+button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin: 10px;
+  background-color: #3a7bd5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #2f65b7;
+  transform: scale(1.05);
+}
+
+/* تخصيص الأزرار الخاصة بإضافة الملاحظات */
+#add-note-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+#add-note-button:hover {
+  background-color: #45a049;
+}
+
+/* تخصيص الأزرار الخاصة بتغيير الوضع */
+#toggle-theme {
+  background-color: #3a7bd5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+#toggle-theme:hover {
+  background-color: #2f65b7;
+}
+
+/* تخصيص مظهر قائمة الاختيارات */
+select {
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+select:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* تخصيص مظهر الخيارات الخاصة باللغات */
+#language-select {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f4f6f8;
+  color: #333;
+  transition: transform 0.3s ease;
+}
+
+#language-select:hover {
+  transform: scale(1.05);
+}
+
+/* تخصيص البطاقات */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 40px;
+  justify-items: center;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* تخصيص الأزرار الخاصة بالإعدادات */
+#settings-link,
+#about-link {
+  text-decoration: none;
+  font-size: 1.2em;
+  color: #3a7bd5;
+}
+
+#settings-link:hover,
+#about-link:hover {
+  color: #2f65b7;
+}
+
+/* تخصيص الأزرار الخاصة بالصفحات الأخرى */
+.nav-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-buttons a {
+  text-decoration: none;
+  background-color: #09ff00;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin: 0 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 1.2em;
+}
+
+.nav-buttons a:hover {
+  background-color: #2f65b7;
+  transform: scale(1.05);
+}

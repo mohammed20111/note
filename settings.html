@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>الإعدادات</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      color: #333;
+    }
+    .dark-mode {
+      background-color: #222;
+      color: #fff;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .settings-item {
+      margin: 10px 0;
+    }
+    .settings-item label {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>الإعدادات</h1>
+
+    <div class="settings-item">
+      <label for="language-select">اللغة:</label>
+      <select id="language-select" onchange="changeLanguage()">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+      </select>
+    </div>
+
+    <div class="settings-item">
+      <label for="dark-mode-toggle">الوضع المظلم:</label>
+      <input type="checkbox" id="dark-mode-toggle" onchange="toggleDarkMode()">
+    </div>
+
+    <div class="settings-item">
+      <button onclick="goBack()">رجوع</button>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      ar: {
+        darkMode: "الوضع المظلم",
+        language: "اللغة",
+        back: "رجوع"
+      },
+      en: {
+        darkMode: "Dark Mode",
+        language: "Language",
+        back: "Back"
+      },
+      es: {
+        darkMode: "Modo Oscuro",
+        language: "Idioma",
+        back: "Atrás"
+      },
+      fr: {
+        darkMode: "Mode Sombre",
+        language: "Langue",
+        back: "Retour"
+      }
+    };
+
+    function changeLanguage() {
+      const lang = document.getElementById('language-select').value;
+      const t = translations[lang];
+      document.querySelector('h1').innerText = t.language;
+      document.querySelector('label[for="dark-mode-toggle"]').innerText = t.darkMode;
+      document.querySelector('button').innerText = t.back;
+      localStorage.setItem("language", lang);
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+    }
+
+    function goBack() {
+      window.history.back();  // Go back to the previous page
+    }
+
+    window.onload = function() {
+      const savedLang = localStorage.getItem("language") || "ar";
+      document.getElementById('language-select').value = savedLang;
+      changeLanguage();
+
+      if (localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark-mode");
+        document.getElementById('dark-mode-toggle').checked = true;
+      }
+    };
+  </script>
+
+</body>
+</html>

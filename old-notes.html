@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>📚 ملاحظاتي القديمة</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background-color: #222;
+      color: #fff;
+    }
+    header {
+      padding: 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+    }
+    .container {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .controls button {
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    .note {
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .note.done {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+    .note button {
+      margin-right: 5px;
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .cards {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .card {
+      flex: 1;
+      min-width: 150px;
+      padding: 20px;
+      text-align: center;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .dark-mode .card {
+      background-color: #333;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📚 ملاحظاتي القديمة</h1>
+  </header>
+
+  <div class="container">
+    <div id="old-notes"></div>
+
+    <div class="cards">
+      <a href="index.html" class="card">🔙 العودة إلى الملاحظات</a>
+    </div>
+  </div>
+
+  <script>
+    let oldNotes = [];
+
+    function saveOldNotes() {
+      localStorage.setItem("oldNotes", JSON.stringify(oldNotes));
+    }
+
+    function renderOldNotes() {
+      const container = document.getElementById("old-notes");
+      container.innerHTML = "";
+      oldNotes.forEach((note, index) => {
+        const div = document.createElement("div");
+        div.className = "note" + (note.done ? " done" : "");
+        div.style.backgroundColor = note.color;
+        div.innerHTML = `
+          <div><strong>${note.text}</strong><br><small>${note.timestamp}</small></div>
+          <div>
+            <button onclick="deleteOldNote(${index})">🗑️</button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function deleteOldNote(index) {
+      oldNotes.splice(index, 1);
+      saveOldNotes();
+      renderOldNotes();
+    }
+
+    window.onload = function () {
+      const savedOldNotes = localStorage.getItem("oldNotes");
+      if (savedOldNotes) {
+        oldNotes = JSON.parse(savedOldNotes);
+      }
+      renderOldNotes();
+    };
+  </script>
+</body>
+</html>
